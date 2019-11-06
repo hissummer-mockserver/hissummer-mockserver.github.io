@@ -5,14 +5,13 @@
 1. 部署文件
     1. 源代码构建
         > 请使用最新的master分支进行构建
-    1. 使用已构建war文件单独运行
-        > 将war下载后 执行
-    1. 使用已构建war文件部署到tomcat
-        > 下载tomcat，并将war包放置于tomcat home目录下的webapps下，启动tomcat
+    1. 使用已构建war文件
 
 1. 部署方式
     1. 单独启动
+        > 将war下载后,直接执行命令启动
     1. tomcat容器部署
+        > 下载tomcat，并将war包放置于tomcat home目录下的webapps下，启动tomcat    
 
 * ## 使用
 1. 静态response
