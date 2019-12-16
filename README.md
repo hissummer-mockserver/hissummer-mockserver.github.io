@@ -20,7 +20,7 @@ hissummer mockserver 不仅仅是一个restful api的mock server且支持mockser
     1. tomcat容器部署
         > 下载tomcat，并将war包放置于tomcat home目录下的webapps下，启动tomcat    
 
-× ## 快速开始
+* ## 快速开始
 
 * ## 使用文档
 1. 静态response
