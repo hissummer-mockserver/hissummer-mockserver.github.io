@@ -1,6 +1,8 @@
 # Hissummer Mock server
 * ## 介绍
-    > mockserver是模拟http返回报文的一个mock 服务。 用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发和测试。
+    > mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。
+    为什么使用hissummer mock server？ 
+    
 * ## 部署
 1. 部署文件
     1. 源代码构建
