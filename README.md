@@ -1,13 +1,18 @@
 # Hissummer Mock server
 * ## 介绍
     > mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。
-    为什么使用hissummer mock server？ 
+
+为什么使用hissummer mock server？ 
+hissummer mockserver 不仅仅是一个restful api的mock server且支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。
+
     
-* ## 部署
+* ## 如何部署
 1. 部署文件
     1. 源代码构建
-        > 请使用最新的master分支进行构建
     1. 使用已构建war文件
+
+1. 部署之前
+    1. 您需要先安装mongodb 服务器。 什么是mongodb？ 如何安装mongodb ？ 
 
 1. 部署方式
     1. 单独启动
@@ -15,7 +20,9 @@
     1. tomcat容器部署
         > 下载tomcat，并将war包放置于tomcat home目录下的webapps下，启动tomcat    
 
-* ## 使用
+× ## 快速开始
+
+* ## 使用文档
 1. 静态response
     > 即填写的内容不做任何处理直接返回。
     
