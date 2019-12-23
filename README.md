@@ -58,28 +58,29 @@ hissummer mockserver 不仅仅是一个restful api的mock server且支持mockser
 
 1. 如何Mock的报文
 
-    1. 静态response
-        > 即填写的内容不做任何处理直接返回。
+    1. 静态response报文呢
+        > 即创建mock规则的响应报文内容不做任何处理直接返回。
 
-    1. 内建函数
-        > 内建函数的命名规则同Jmeter，不支持嵌套使用。 但一个responseBody总可以使用多个内建函数。 ${__NowDate(arg1,arg2)} NowDate为函数名称。
-        
-        1. NowDate("yyyy-MM-dd HH:mm:ss")  日期为可选参数，若不填写即时当前时间秒。 若填写返回指定的时间的java时间秒。
-            > 示例：
-            NowDate("2018-10-12 11:00:00") ->  1539313200000
-            NowDate()  ->  1539313200000 (当前时间的java秒) 
+    1. 动态response报文
+        1. 内建函数
+            > 内建函数的命名规则同Jmeter，不支持嵌套使用。 但一个responseBody总可以使用多个内建函数。 ${__NowDate(arg1,arg2)} NowDate为函数名称。
 
-        1. RandomString(stringLength,stringCharactor) 
-            > stringLength 返回的随机字符串长度
-            > stringCharactor 返回的字符串的字符内容
+            1. NowDate("yyyy-MM-dd HH:mm:ss")  日期为可选参数，若不填写即时当前时间秒。 若填写返回指定的时间的java时间秒。
+                > 示例：
+                NowDate("2018-10-12 11:00:00") ->  1539313200000
+                NowDate()  ->  1539313200000 (当前时间的java秒) 
 
-            > 示例：
-            RandomString("5","abcdefg")  ->  adefg
-            RandomString("5") -> XZ6MKZOOF77MFABQ3V
+            1. RandomString(stringLength,stringCharactor) 
+                > stringLength 返回的随机字符串长度
+                > stringCharactor 返回的字符串的字符内容
 
-    1. 通过请求header或者请求body中获取数据
-        > 通过
+                > 示例：
+                RandomString("5","abcdefg")  ->  adefg
+                RandomString("5") -> XZ6MKZOOF77MFABQ3V
 
-    1. groovy脚本
+        1. 通过请求header或者请求body中获取数据
+            > 通过
+
+        1. groovy脚本
 
 * ## 赞助
