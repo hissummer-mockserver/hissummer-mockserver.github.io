@@ -49,12 +49,12 @@ hissummer mockserver 不仅仅是一个restful api的mock server且支持mockser
 
     >**示例如下:**
     >若添加有2条规则
-    >第一条规则: hostName:*  uri:/hello  mockResponse: mock1
-    >第二条规则: hostName:testHostName  uri:/hello  mockResponse: mock2
-    >当访问 http://127.0.0.1/hello 时(通过ip地址访问mock server), 则会匹配第一条规则.
-    >如果我访问者 http://testHostName/hello 时,会匹配到第二条规则. (testHostName 需要添加hosts或者dns添加record)
-    >再如果我访问 http://testanotherHostName/hello 时, 则会尝试先匹配 hostName=testanotherHostName, uri=/hello  找不到则会寻找
-    >hostName=testanotherHostName , uri=/ , 如果再找不到则开始寻找 hostName=* , uri=/hello
+    >* 第一条规则: hostName:*  uri:/hello  mockResponse: mock1
+    >* 第二条规则: hostName:testHostName  uri:/hello  mockResponse: mock2
+    >>* 当访问 http://127.0.0.1/hello 时(通过ip地址访问mock server), 则会匹配第一条规则.
+    >>* 如果我访问者 http://testHostName/hello 时,会匹配到第二条规则. (testHostName 需要添加hosts或者dns添加record)
+    >>* 再如果我访问 http://testanotherHostName/hello 时, 则会尝试先匹配 hostName=testanotherHostName, uri=/hello  找不到则会寻找
+    >>* hostName=testanotherHostName , uri=/ , 如果再找不到则开始寻找 hostName=* , uri=/hello
 
 1. 静态response
     > 即填写的内容不做任何处理直接返回。
