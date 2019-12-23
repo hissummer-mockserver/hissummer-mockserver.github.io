@@ -40,10 +40,12 @@ hissummer mockserver 不仅仅是一个restful api的mock server且支持mockser
 
 * ## 使用文档
 1. 匹配流程
+
 http mock匹配规则说明
     1. 同样的hostName和uri 只能添加一条
     1. hostName 为* 时, 即表示可以匹配所有的hostName.
     1. hostName(不为*) 和 uri如果 没有匹配到,会尝试匹配hostName为*的规则
+
 示例如下:
 若添加有2条规则
 第一条规则: hostName:*  uri:/hello  mockResponse: mock1
