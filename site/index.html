@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        <link rel="canonical" href="https://mockserver.hissummer.com/">
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Hissummer-mockserver</title>
+        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href=".">Hissummer-mockserver</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href=".">主页</a>
+                            </li>
+                            <li >
+                                <a href="quickstart/">快速开始</a>
+                            </li>
+                            <li >
+                                <a href="https://github.com/hissummer-mockserver/mockServer/issues">后端问题提交</a>
+                            </li>
+                            <li >
+                                <a href="https://github.com/hissummer-mockserver/mockserverAdminUI/issues">前端问题提交</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="disabled">
+                                <a rel="next" >
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="quickstart/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">介绍</a></li>
+        <li class="main "><a href="#_2">如何部署</a></li>
+        <li class="main "><a href="#_3">快速开始</a></li>
+        <li class="main "><a href="#_4">使用文档</a></li>
+        <li class="main "><a href="#_5">赞助</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<ul>
+<li>
+<h2 id="_1">介绍</h2>
+<blockquote>
+<p>mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。</p>
+</blockquote>
+</li>
+</ul>
+<p>为什么使用hissummer mock server？
+hissummer mockserver 不仅仅是一个restful api的mock server且支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。</p>
+<ul>
+<li>
+<h2 id="_2">如何部署</h2>
+</li>
+<li>
+<p>部署文件</p>
+<ol>
+<li>源代码构建</li>
+<li>使用已构建war文件</li>
+</ol>
+</li>
+<li>
+<p>部署之前</p>
+<ol>
+<li>您需要先安装mongodb 服务器并启动。 <a href="https://docs.mongodb.com/manual/introduction/" target="_blank"> 什么是mongodb</a>？</li>
+<li>如何安装mongodb ？<ol>
+<li><a href="https://docs.mongodb.com/manual/installation/" target="_blank">官方文档</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1360756" target="_blank">linux安装中文文档</a></li>
+<li><a href="https://www.runoob.com/mongodb/mongodb-window-install.html" target="_blank">windows安装中文文档</a></li>
+</ol>
+</li>
+<li>如何验证mongodb启动成功
+使用客户端访问并可以连接，或者使用telnet ip port 来验证mongodb服务器监听的端口是否可以链接。</li>
+</ol>
+</li>
+<li>
+<p>hissummer mockserver部署</p>
+<ol>
+<li>
+<p>单独启动
+    &gt; 将war下载后,直接执行命令启动.  <a href="https://github.com/hissummer-mockserver/mockServer/packages" target="_blank">版本下载</a></p>
+<blockquote>
+<p>$java -jar hissummer-mockserver.war  --server.port=8081 --spring.data.mongodb.host=localhost --spring.data.mongodb.port=27017 <br />
+(备注： spring.data.mongodb.host 和 spring.data.mongodb.port 分别为mongodb 服务的ip和端口号， server.port 为mockserver 的服务端口号)</p>
+</blockquote>
+</li>
+<li>
+<p>tomcat容器部署
+    &gt; 下载tomcat，并将war包放置于tomcat home目录下的webapps下，启动tomcat    </p>
+</li>
+<li>
+<p>启动后，用浏览器访问 http://localhost:8081</p>
+</li>
+</ol>
+</li>
+<li>
+<h2 id="_3">快速开始</h2>
+</li>
+<li>
+<h2 id="_4">使用文档</h2>
+</li>
+<li>
+<p>匹配流程</p>
+<blockquote>
+<p>http mock匹配规则说明
+1. 同样的hostName和uri 只能添加一条  <br />
+1. hostName 为<em> 时, 即表示可以匹配所有的hostName.  <br />
+1. hostName(不为</em>) 和 uri如果 没有匹配到,会尝试匹配hostName为*的规则    </p>
+<p><strong>示例如下:</strong>
+若添加有2条规则
+* 第一条规则: hostName:*  uri:/hello  mockResponse: mock1
+* 第二条规则: hostName:testHostName  uri:/hello  mockResponse: mock2</p>
+<blockquote>
+<ul>
+<li>当访问 http://127.0.0.1/hello 时(通过ip地址访问mock server), 则会匹配第一条规则， 返回报文： <em>mock1</em>.</li>
+<li>如果我访问者 http://testHostName/hello 时,会匹配到第二条规则，返回报文：<em>mock2</em>. (testHostName 需要添加hosts或者dns添加record)</li>
+<li>再如果我访问 http://testanotherHostName/hello 时, 则会尝试先匹配 hostName=testanotherHostName, uri=/hello  找不到则会寻找</li>
+<li>hostName=testanotherHostName , uri=/ , 如果再找不到则开始寻找 hostName=<em> , uri=/hello，返回报文: </em>mock1*。</li>
+</ul>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<p>如何Mock的报文</p>
+<ol>
+<li>
+<p>静态response报文呢
+    &gt; 即创建mock规则的响应报文内容不做任何处理直接返回。</p>
+</li>
+<li>
+<p>动态response报文</p>
+<ol>
+<li>
+<p>内建函数
+    &gt; 内建函数的命名规则同Jmeter，不支持嵌套使用。 但一个responseBody总可以使用多个内建函数。 ${__NowDate(arg1,arg2)} NowDate为函数名称。</p>
+<ol>
+<li>
+<p>NowDate("yyyy-MM-dd HH:mm:ss")  日期为可选参数，若不填写即时当前时间秒。 若填写返回指定的时间的java时间秒。
+    &gt; 示例：
+    NowDate("2018-10-12 11:00:00") -&gt;  1539313200000
+    NowDate()  -&gt;  1539313200000 (当前时间的java秒)</p>
+</li>
+<li>
+<p>RandomString(stringLength,stringCharactor)
+    &gt; stringLength 返回的随机字符串长度
+    &gt; stringCharactor 返回的字符串的字符内容</p>
+<blockquote>
+<p>示例：
+RandomString("5","abcdefg")  -&gt;  adefg
+RandomString("5") -&gt; XZ6MKZOOF77MFABQ3V</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>
+<p>通过请求header或者请求body中获取数据
+    &gt; 通过</p>
+</li>
+<li>
+<p>groovy脚本</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h2 id="_5">赞助</h2>
+</li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2020-04-18 15:17:44
+-->
