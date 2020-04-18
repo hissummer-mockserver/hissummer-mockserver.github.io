@@ -85,75 +85,91 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#_1">介绍</a></li>
-        <li class="main "><a href="#_2">如何部署</a></li>
-        <li class="main "><a href="#_3">快速开始</a></li>
-        <li class="main "><a href="#_4">使用文档</a></li>
-        <li class="main "><a href="#_5">赞助</a></li>
+        <li class="main "><a href="#_2">支持的功能</a></li>
+        <li class="main "><a href="#_3">部署</a></li>
+        <li class="main "><a href="#_4">快速开始</a></li>
+        <li class="main "><a href="#_5">使用文档</a></li>
+        <li class="main "><a href="#_6">赞助</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<ul>
-<li>
 <h2 id="_1">介绍</h2>
-<blockquote>
-<p>mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。</p>
-</blockquote>
-</li>
-</ul>
-<p>为什么使用hissummer mock server？
+<p>mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。
 hissummer mockserver 不仅仅是一个restful api的mock server且支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。</p>
+<h2 id="_2">支持的功能</h2>
 <ul>
-<li>
-<h2 id="_2">如何部署</h2>
-</li>
-<li>
-<p>部署文件</p>
+<li>http协议（若想支持https 建议前面通过反向代理支持，因为mockserver可以自定义domainname，但是通过tomcat支持多个domainname的ssl证书应该无法解决）</li>
+<li>mock 规则的管理</li>
+<li>支持eureka 服务的注册，心跳，取消注册功能</li>
+</ul>
+<h2 id="_3">部署</h2>
 <ol>
-<li>源代码构建</li>
-<li>使用已构建war文件</li>
-</ol>
+<li>
+<p>源代码构建</p>
+<p>如果需要自己构建代码或者构建镜像，请访问 https://github.com/hissummer-mockserver/buildStandaloneWar</p>
+<ol>
+<li>
+<p>使用已构建的war文件</p>
 </li>
 <li>
 <p>部署之前</p>
 <ol>
-<li>您需要先安装mongodb 服务器并启动。 <a href="https://docs.mongodb.com/manual/introduction/" target="_blank"> 什么是mongodb</a>？</li>
-<li>如何安装mongodb ？<ol>
+<li>
+<p>您需要先安装mongodb 服务器并启动。 <a href="https://docs.mongodb.com/manual/introduction/"  target="_blank" > 什么是mongodb </a></p>
+</li>
+<li>
+<p>如何安装mongodb ？</p>
+<ol>
 <li><a href="https://docs.mongodb.com/manual/installation/" target="_blank">官方文档</a></li>
 <li><a href="https://cloud.tencent.com/developer/article/1360756" target="_blank">linux安装中文文档</a></li>
 <li><a href="https://www.runoob.com/mongodb/mongodb-window-install.html" target="_blank">windows安装中文文档</a></li>
-</ol>
-</li>
-<li>如何验证mongodb启动成功
-使用客户端访问并可以连接，或者使用telnet ip port 来验证mongodb服务器监听的端口是否可以链接。</li>
+<li>docker 部署mongodb  "sudo docker  run -d mongo:4.2.5-bionic "</li>
 </ol>
 </li>
 <li>
-<p>hissummer mockserver部署</p>
+<p>如何验证mongodb启动成功
+      使用客户端访问并可以连接，或者使用telnet ip port 来验证mongodb服务器监听的端口是否可以链接。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>部署hissummer mockserver</p>
 <ol>
 <li>
 <p>单独启动
-    &gt; 将war下载后,直接执行命令启动.  <a href="https://github.com/hissummer-mockserver/mockServer/packages" target="_blank">版本下载</a></p>
-<blockquote>
-<p>$java -jar hissummer-mockserver.war  --server.port=8081 --spring.data.mongodb.host=localhost --spring.data.mongodb.port=27017 <br />
-(备注： spring.data.mongodb.host 和 spring.data.mongodb.port 分别为mongodb 服务的ip和端口号， server.port 为mockserver 的服务端口号)</p>
-</blockquote>
+      将war下载后,直接执行命令启动.  <a href="https://github.com/hissummer-mockserver/mockServer/packages" target="_blank">版本下载</a></p>
+<p><code>$java -jar hissummer-mockserver.war  --server.port=8081 --spring.data.mongodb.host=localhost --spring.data.mongodb.port=27017</code></p>
+<p>(备注： spring.data.mongodb.host 和 spring.data.mongodb.port 分别为mongodb 服务的ip和端口号， server.port 为mockserver 的服务端口号)</p>
 </li>
 <li>
-<p>tomcat容器部署
-    &gt; 下载tomcat，并将war包放置于tomcat home目录下的webapps下，启动tomcat    </p>
+<p>tomcat容器部署</p>
+<p>下载tomcat，并将war包放置于tomcat home目录下的webapps下，启动tomcat
+启动后，用浏览器访问 http://localhost:8081 （端口号是你在tomcat的config/server.xml中设定的端口）  </p>
 </li>
-<li>
-<p>启动后，用浏览器访问 http://localhost:8081</p>
+</ol>
 </li>
 </ol>
 </li>
 <li>
-<h2 id="_3">快速开始</h2>
+<p>docker部署</p>
 </li>
-<li>
-<h2 id="_4">使用文档</h2>
-</li>
+</ol>
+<pre><code>$sudo docker run -d -e mongodbHost=${mongodbHost} -e mongodbPort=${mongodbPort} -p 8080:8080   nighteblis/hissummer-mockserver  
+</code></pre>
+
+<p>mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号</p>
+<ol>
+<li>docker-compose 部署</li>
+</ol>
+<pre><code>$git clone git@github.com:hissummer-mockserver/buildStandaloneWar.git
+$cd compose
+$sudo docker-compose up -d
+</code></pre>
+
+<h2 id="_4">快速开始</h2>
+<h2 id="_5">使用文档</h2>
+<ol>
 <li>
 <p>匹配流程</p>
 <blockquote>
@@ -218,10 +234,8 @@ RandomString("5") -&gt; XZ6MKZOOF77MFABQ3V</p>
 </li>
 </ol>
 </li>
-<li>
-<h2 id="_5">赞助</h2>
-</li>
-</ul></div>
+</ol>
+<h2 id="_6">赞助</h2></div>
         </div>
 
         <footer class="col-md-12">
@@ -304,5 +318,5 @@ RandomString("5") -&gt; XZ6MKZOOF77MFABQ3V</p>
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-04-18 15:57:37
+Build Date UTC : 2020-04-18 16:37:34
 -->
