@@ -11,55 +11,29 @@ hissummer mockserver 不仅仅是一个restful api的mock server且支持mockser
 
 ## 部署
 
-1. 源代码构建
+推荐使用docker-compose进行部署。如果使用docker和源码或者war包部署，请先部署mongodb服务，[如何部署mongodb？](deploy/deploymongodb/)。
 
-    如果需要自己构建代码或者构建镜像，请访问 https://github.com/hissummer-mockserver/buildStandaloneWar
+1. war包方式部署
 
-    1. 使用已构建的war文件
+    > 注意：此方式部署，需要先部署mongodb服务！
 
-       1. 部署之前
-
-           1. 您需要先安装mongodb 服务器并启动。 <a href="https://docs.mongodb.com/manual/introduction/"  target="_blank" > 什么是mongodb </a>
-
-           1. 如何安装mongodb ？
-              1. <a href="https://docs.mongodb.com/manual/installation/" target="_blank">官方文档</a>
-              1. <a href="https://cloud.tencent.com/developer/article/1360756" target="_blank">linux安装中文文档</a>
-              1. <a href="https://www.runoob.com/mongodb/mongodb-window-install.html" target="_blank">windows安装中文文档</a>
-              1. docker 部署mongodb  "sudo docker  run -d mongo:4.2.5-bionic "
-
-           1. 如何验证mongodb启动成功
-      使用客户端访问并可以连接，或者使用telnet ip port 来验证mongodb服务器监听的端口是否可以链接。
-
-       1. 部署hissummer mockserver
-
-           1. 单独启动
-              将war下载后,直接执行命令启动.  <a href="https://github.com/hissummer-mockserver/mockServer/packages" target="_blank">版本下载</a>
-
-            ```
-            $java -jar hissummer-mockserver.war  --server.port=8081 --spring.data.mongodb.host=localhost --spring.data.mongodb.port=27017   
-            ```
-
-            (备注： spring.data.mongodb.host 和 spring.data.mongodb.port 分别为mongodb 服务的ip和端口号， server.port 为mockserver 的服务端口号)
-
-          1. tomcat容器部署
-
-            下载tomcat，并将war包放置于tomcat home目录下的webapps下，启动tomcat
-            启动后，用浏览器访问 http://localhost:8081 （端口号是你在tomcat的config/server.xml中设定的端口）  
+    [war包部署文档](deploy/compile/)
 
 1. docker部署
 
-```
-$sudo docker run -d -e mongodbHost=${mongodbHost} -e mongodbPort=${mongodbPort} -p 8080:8080   nighteblis/hissummer-mockserver  
-```
-mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号
+    > 注意：此方式部署，需要先部署mongodb服务！
+
+    `$sudo docker run -d -e mongodbHost=${mongodbHost} -e mongodbPort=${mongodbPort} -p 8080:8080   nighteblis/hissummer-mockserver`
+
+    mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号
 
 1. docker-compose 部署
 
-```
-$git clone git@github.com:hissummer-mockserver/buildStandaloneWar.git
-$cd compose
-$sudo docker-compose up -d
-```
+    ```
+    $git clone git@github.com:hissummer-mockserver/buildStandaloneWar.git
+    $cd compose
+    $sudo docker-compose up -d
+    ```
 
 ## 快速开始
 
