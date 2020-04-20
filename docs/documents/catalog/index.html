@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
-        <link rel="canonical" href="https://mockserver.hissummer.com/">
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Hissummer-mockserver</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="canonical" href="https://mockserver.hissummer.com/documents/catalog/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Catalog - Hissummer-mockserver</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,13 +19,13 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -39,18 +39,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">Hissummer-mockserver</a>
+                    <a class="navbar-brand" href="../..">Hissummer-mockserver</a>
                 </div>
 
                 <!-- Expanded navigation -->
                 <div class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href=".">主页</a>
+                            <li >
+                                <a href="../..">主页</a>
                             </li>
                             <li >
-                                <a href="quickstart/">快速开始</a>
+                                <a href="../../quickstart/">快速开始</a>
                             </li>
                             <li >
                                 <a href="https://github.com/hissummer-mockserver/mockServer/issues">后端问题提交</a>
@@ -66,16 +66,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="disabled">
-                                <a rel="next" >
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li >
-                                <a rel="prev" href="quickstart/">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -84,53 +74,147 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#_1">介绍</a></li>
-        <li class="main "><a href="#_2">支持的功能</a></li>
-        <li class="main "><a href="#_3">部署</a></li>
-        <li class="main "><a href="#_4">快速开始</a></li>
-        <li class="main "><a href="#_5">文档</a></li>
-        <li class="main "><a href="#_6">赞助</a></li>
+        <li class="main active"><a href="#_1">一 工作原理</a></li>
+        <li class="main "><a href="#http-mock">二 Http Mock规则</a></li>
+            <li><a href="#_2">规则属性</a></li>
+            <li><a href="#_3">操作</a></li>
+            <li><a href="#_4">匹配规则</a></li>
+        <li class="main "><a href="#eureka-mock">三 Eureka Mock规则</a></li>
+            <li><a href="#_5">规则属性</a></li>
+            <li><a href="#_6">操作</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h2 id="_1">介绍</h2>
-<p>mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。
-hissummer mockserver 不仅仅是一个restful api的mock server且支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。</p>
-<h2 id="_2">支持的功能</h2>
+<h2 id="_1">一 工作原理</h2>
+<h2 id="http-mock">二 Http Mock规则</h2>
+<p>Http Mock Rule，定义一个http接口的mock报文。</p>
+<h3 id="_2">规则属性</h3>
 <ul>
-<li>http协议（若想支持https 建议前面通过反向代理支持，因为mockserver可以自定义domainname，但是通过tomcat支持多个domainname的ssl证书应该无法解决）</li>
-<li>mock 规则的管理</li>
-<li>支持eureka 服务的注册，心跳，取消注册功能</li>
+<li>id</li>
+<li>hostName</li>
+<li>uri</li>
+<li>工作模式</li>
+<li>响应Header</li>
+<li>
+<p>响应mock报文</p>
+<p>Mock报文如2种方式：</p>
+<ol>
+<li>
+<p>静态response报文呢</p>
+<blockquote>
+<p>即创建mock规则的响应报文内容不做任何处理直接返回。</p>
+</blockquote>
+</li>
+<li>
+<p>动态response报文</p>
+<ol>
+<li>
+<p>内建函数</p>
+<blockquote>
+<p>内建函数的命名规则同Jmeter，不支持嵌套使用。 但一个responseBody总可以使用多个内建函数。 ${__NowDate(arg1,arg2)} NowDate为函数名称。</p>
+</blockquote>
+<ol>
+<li>
+<p>NowDate("yyyy-MM-dd HH:mm:ss")  日期为可选参数，若不填写即时当前时间秒。 若填写返回指定的时间的java时间秒。</p>
+<blockquote>
+<p>示例：
+NowDate("2018-10-12 11:00:00") -&gt;  1539313200000
+NowDate()  -&gt;  1539313200000 (当前时间的java秒)</p>
+</blockquote>
+</li>
+<li>
+<p>RandomString(stringLength,stringCharactor)</p>
+<blockquote>
+<p>stringLength 返回的随机字符串长度
+stringCharactor 返回的字符串的字符内容</p>
+<p>示例：
+RandomString("5","abcdefg")  -&gt;  adefg
+RandomString("5") -&gt; XZ6MKZOOF77MFABQ3V</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>
+<p>通过请求header或者请求body中获取数据</p>
+<blockquote>
+<p>通过</p>
+</blockquote>
+</li>
+<li>
+<p>groovy脚本</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
 </ul>
-<h2 id="_3">部署</h2>
-<p>推荐使用docker-compose进行部署。如果使用docker和源码或者war包部署，请先部署mongodb服务，<a href="deploy/deploymongodb/">如何部署mongodb？</a>。</p>
+<h3 id="_3">操作</h3>
+<ol>
+<li>
+<p>添加</p>
+</li>
+<li>
+<p>删除</p>
+</li>
+<li>
+<p>修改</p>
+</li>
+<li>
+<p>复制添加</p>
+</li>
+</ol>
+<h3 id="_4">匹配规则</h3>
+<ol>
+<li>
+<p>匹配流程</p>
+<blockquote>
+<p>http mock匹配规则说明
+1. 同样的hostName和uri 只能添加一条  <br />
+1. hostName 为<em> 时, 即表示可以匹配所有的hostName.  <br />
+1. hostName(不为</em>) 和 uri如果 没有匹配到,会尝试匹配hostName为*的规则    </p>
+<p><strong>示例如下:</strong>
+若添加有2条规则
+* 第一条规则: hostName:*  uri:/hello  mockResponse: mock1
+* 第二条规则: hostName:testHostName  uri:/hello  mockResponse: mock2</p>
+<blockquote>
 <ul>
-<li>
-<p><a href="deploy/compile/">war包部署</a></p>
-<p>！注意：此方式部署，需要先<a href="deploy/deploymongodb/">部署mongodb</a>。</p>
-</li>
-<li>
-<p>docker部署</p>
-<p>！注意：此方式部署，需要先<a href="deploy/deploymongodb/">部署mongodb</a>。</p>
-<p><code>$sudo docker run -d -e mongodbHost=${mongodbHost} -e mongodbPort=${mongodbPort} -p 8080:8080   nighteblis/hissummer-mockserver</code></p>
-<p>mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号</p>
-</li>
-<li>
-<p>docker-compose 部署</p>
-<p><code>$git clone git@github.com:hissummer-mockserver/buildStandaloneWar.git
-$cd compose
-$sudo docker-compose up -d</code></p>
-</li>
+<li>当访问 http://127.0.0.1/hello 时(通过ip地址访问mock server), 则会匹配第一条规则， 返回报文： <em>mock1</em>.</li>
+<li>如果我访问者 http://testHostName/hello 时,会匹配到第二条规则，返回报文：<em>mock2</em>. (testHostName 需要添加hosts或者dns添加record)</li>
+<li>再如果我访问 http://testanotherHostName/hello 时, 则会尝试先匹配 hostName=testanotherHostName, uri=/hello  找不到则会寻找</li>
+<li>hostName=testanotherHostName , uri=/ , 如果再找不到则开始寻找 hostName=<em> , uri=/hello，返回报文: </em>mock1*。</li>
 </ul>
-<h2 id="_4">快速开始</h2>
-<p><a href="quickstart/">快速开始</a></p>
-<h2 id="_5">文档</h2>
-<p><a href="documents/catalog/">文档</a></p>
-<h2 id="_6">赞助</h2>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<h2 id="eureka-mock">三 Eureka Mock规则</h2>
+<p>Eureka Mock Rule， 定义如何注册一个eureka服务实例。</p>
+<h3 id="_5">规则属性</h3>
 <ul>
-<li>paypal account: <a href="https://www.paypal.me/nighteblis">https://www.paypal.me/nighteblis</a></li>
-</ul></div>
+<li>id</li>
+<li>eurekaServer</li>
+<li>eureka ersion</li>
+<li>hostName</li>
+<li>port</li>
+<li>serviceName</li>
+<li>status (disable/enable)</li>
+</ul>
+<h3 id="_6">操作</h3>
+<ol>
+<li>
+<p>添加</p>
+</li>
+<li>
+<p>删除</p>
+</li>
+<li>
+<p>修改</p>
+</li>
+<li>
+<p>复制添加</p>
+</li>
+</ol></div>
         </div>
 
         <footer class="col-md-12">
@@ -138,11 +222,11 @@ $sudo docker-compose up -d</code></p>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "../..",
                 shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -210,8 +294,3 @@ $sudo docker-compose up -d</code></p>
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-04-20 15:58:59
--->
