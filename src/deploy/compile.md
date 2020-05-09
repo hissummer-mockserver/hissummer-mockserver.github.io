@@ -18,6 +18,11 @@
         ```
 
         (备注： spring.data.mongodb.host 和 spring.data.mongodb.port 分别为mongodb 服务的ip和端口号， server.port 为mockserver 的服务端口号)
+        ```
+        -DLOGBASE 指定输出的日志目录
+        $java -DLOGBASE="/log/path"  -jar hissummer-mockserver.war --server.port=8082 --spring.data.mongodb.host=localhost --spring.data.mongodb.port=27017   
+        ```        
+
 
     1. tomcat容器部署
 
