@@ -87,6 +87,26 @@
                 <div class="col-md-9" role="main">
 
 <h2 id="_1">一 工作原理</h2>
+<ol>
+<li>
+<p>请求路径的匹配(request path match)</p>
+</li>
+<li>
+<p>返回mock报文的处理</p>
+<ol>
+<li>第一步首先处理${__内建函数}变量替换。例如${__NowDate()} 替换成 1539313200000</li>
+<li>
+<p>第二步请求header，请求body中的取值替换 。 例如${requestBody.a} 将本次请求的body中的a值获取到并替换。</p>
+<pre><code>例如： 请求的header content-type: application/json,  body 为  {'a':'value'} , 那么 mock response的报文中 ${requestBody.a}  将会替换成  value值
+</code></pre>
+</li>
+<li>
+<p>第三步，如果是groovy脚本，则执行groovy脚本。 并将groovy脚本中的response变量的值作为要返回的response值。</p>
+</li>
+<li>第四步，将response所有的换行符删除。</li>
+</ol>
+</li>
+</ol>
 <h2 id="http-mock">二 Http Mock规则</h2>
 <p>Http Mock Rule，定义一个http接口的mock报文。</p>
 <h3 id="_2">规则属性</h3>
@@ -138,7 +158,8 @@ RandomString("5") -&gt; XZ6MKZOOF77MFABQ3V</p>
 <li>
 <p>通过请求header或者请求body中获取数据</p>
 <blockquote>
-<p>通过</p>
+<p>通过${responseBody.a}</p>
+<p>通过${responseHeader.a}</p>
 </blockquote>
 </li>
 <li>
@@ -149,6 +170,13 @@ RandomString("5") -&gt; XZ6MKZOOF77MFABQ3V</p>
 </ol>
 </li>
 </ul>
+<pre><code>            //groovy
+            a='myresponse'
+            response=a
+</code></pre>
+
+<pre><code>    groovy中设置response变量的值就是要返回的值，response的值可以用groovy脚本生成。
+</code></pre>
 <h3 id="_3">操作</h3>
 <ol>
 <li>

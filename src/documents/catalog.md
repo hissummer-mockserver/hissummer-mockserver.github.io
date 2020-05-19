@@ -1,4 +1,16 @@
 ## 一 工作原理
+
+1.  请求路径的匹配(request path match)
+
+2. 返回mock报文的处理
+    1.  第一步首先处理${\_\_内建函数}变量替换。例如${\_\_NowDate()} 替换成 1539313200000
+    2.  第二步请求header，请求body中的取值替换 。 例如${requestBody.a} 将本次请求的body中的a值获取到并替换。
+
+            例如： 请求的header content-type: application/json,  body 为  {'a':'value'} , 那么 mock response的报文中 ${requestBody.a}  将会替换成  value值
+
+    3. 第三步，如果是groovy脚本，则执行groovy脚本。 并将groovy脚本中的response变量的值作为要返回的response值。
+    4. 第四步，将response所有的换行符删除。
+
 ## 二 Http Mock规则
 Http Mock Rule，定义一个http接口的mock报文。
 ### 规则属性
@@ -37,10 +49,18 @@ Http Mock Rule，定义一个http接口的mock报文。
 
         1. 通过请求header或者请求body中获取数据
 
-            > 通过
+            > 通过${responseBody.a}
+
+            > 通过${responseHeader.a}
 
         1. groovy脚本
+```
+            //groovy
+            a='myresponse'
+            response=a
+```
 
+        groovy中设置response变量的值就是要返回的值，response的值可以用groovy脚本生成。
 ### 操作
 
 1. 添加
