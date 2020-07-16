@@ -3,20 +3,21 @@
 ***
 
 # 介绍
-
+***
 mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。
 hissummer mockserver 还支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。
+![homepage](../img/homepage.png)
 
 #  支持的功能
-
+***
 * http协议mock 指定path的响应报文，响应头
 * mock 规则的管理
 * 支持eureka 服务的注册，心跳，取消注册功能
 
-***
+
 
 # 部署
-
+***
 为了更快速的开始，推荐使用docker-compose或者docker进行部署。
 
 ## docker-compose 部署
@@ -52,14 +53,13 @@ $ sudo docker run -d --name hissummer-mockserver -e mongodbHost=mongodbHost -e m
 ***
 
 # 快速开始
-
+***
 [快速开始](quickstart/)
 
-***
 # 文档
-
+***
 [文档](documents/catalog/)
 
-***
 # 赞助
+***
 paypal account: [https://www.paypal.me/nighteblis](https://www.paypal.me/nighteblis)
