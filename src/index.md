@@ -1,45 +1,65 @@
-## 介绍
+
+# **Hissummer Mockserver**
+***
+
+# 介绍
 
 mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。
-hissummer mockserver 不仅仅是一个restful api的mock server且支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。
+hissummer mockserver 还支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。
 
-##  支持的功能
+#  支持的功能
 
-* http协议（若想支持https 建议前面通过反向代理支持，因为mockserver可以自定义domainname，但是通过tomcat支持多个domainname的ssl证书应该无法解决）
+* http协议mock 指定path的响应报文，响应头
 * mock 规则的管理
 * 支持eureka 服务的注册，心跳，取消注册功能
 
-## 部署
+***
 
-推荐使用docker-compose进行部署。如果使用docker和源码或者war包部署，请先部署mongodb服务，[如何部署mongodb？](deploy/deploymongodb/)。
+# 部署
 
-*  [war包部署](deploy/compile/)
+为了更快速的开始，推荐使用docker-compose或者docker进行部署。
 
-    ！注意：此方式部署，需要先[部署mongodb](deploy/deploymongodb/)。
+## docker-compose 部署
 
-* docker部署
+```
+$ git clone git@github.com:hissummer-mockserver/buildStandaloneWar.git
+$ cd compose
+$ sudo docker-compose up -d
+```
 
-    ！注意：此方式部署，需要先[部署mongodb](deploy/deploymongodb/)。
+## docker部署
 
-    `$sudo docker run -d -e mongodbHost=${mongodbHost} -e mongodbPort=${mongodbPort} -p 8080:8080   nighteblis/hissummer-mockserver`
+```
+$ sudo docker run -d --name hissummer-mongodb -p 27018:27017 mongo:4.2.5-bionic
+$ sudo docker run -d --name hissummer-mockserver -e mongodbHost=localhost -e mongodbPort=27018 -p 8080:8080   nighteblis/hissummer-mockserver
+```
 
-    mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号
+*注意：mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号。启动mongodb 容器，也可以不做端口映射，在启动hissummer-mockserver时则指定的mongodbHost为mongodb容器的hostame或者docker分配的ip地址。关于docker的使用方法，请阅读docker官方文档！*
 
-* docker-compose 部署
+## docker + mongodb 部署
 
-    ```
-    $git clone git@github.com:hissummer-mockserver/buildStandaloneWar.git
-    $cd compose
-    $sudo docker-compose up -d
-    ```
+请先部署mongodb服务，[如何部署mongodb？](deploy/deploymongodb/)。
 
-## 快速开始
+```
+$ sudo docker run -d --name hissummer-mockserver -e mongodbHost=mongodbHost -e mongodbPort=27017 -p 8080:8080   nighteblis/hissummer-mockserver
+```
+
+## war包部署
+
+1. [部署mongodb](deploy/deploymongodb/)
+2. [war包构建和部署](deploy/compile/)
+
+***
+
+# 快速开始
 
 [快速开始](quickstart/)
 
-## 文档
+***
+# 文档
 
 [文档](documents/catalog/)
 
-## 赞助
-* paypal account: [https://www.paypal.me/nighteblis](https://www.paypal.me/nighteblis)
+***
+# 赞助
+paypal account: [https://www.paypal.me/nighteblis](https://www.paypal.me/nighteblis)

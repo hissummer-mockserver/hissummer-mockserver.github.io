@@ -53,6 +53,9 @@
                                 <a href="../../quickstart/">快速开始</a>
                             </li>
                             <li >
+                                <a href="../../documents/catalog/">文档</a>
+                            </li>
+                            <li >
                                 <a href="https://github.com/hissummer-mockserver/mockServer/issues">后端问题提交</a>
                             </li>
                             <li >
@@ -75,31 +78,28 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#mongodb">mongodb服务部署</a></li>
+            <li><a href="#mongodb_1">如何安装mongodb ？</a></li>
+            <li><a href="#mongodb_2">如何验证mongodb启动成功</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
 <h1 id="mongodb">mongodb服务部署</h1>
 <p>部署hissummer-mockserver之前，您需要先安装mongodb 服务器并成功启动。 <a href="https://docs.mongodb.com/manual/introduction/"  target="_blank" > 什么是mongodb </a></p>
-<ol>
-<li>
-<p>如何安装mongodb ？</p>
+<h2 id="mongodb_1">如何安装mongodb ？</h2>
 <ol>
 <li><a href="https://docs.mongodb.com/manual/installation/" target="_blank">官方文档</a></li>
 <li><a href="https://cloud.tencent.com/developer/article/1360756" target="_blank">linux安装中文文档</a></li>
 <li><a href="https://www.runoob.com/mongodb/mongodb-window-install.html" target="_blank">windows安装中文文档</a></li>
-<li>
-<p>docker 部署mongodb<br />
-<code>sudo docker  run -d mongo:4.2.5-bionic</code></p>
-<p>docker 镜像的tags linux中可以使用 mongo:4.2.5-bionic，其他的tags请参考<a href="https://hub.docker.com/_/mongo">mongodb 官方镜像文档</a>。</p>
-</li>
+<li>docker 部署mongodb  </li>
 </ol>
-</li>
-<li>
-<p>如何验证mongodb启动成功
-    使用客户端访问并可以连接，或者使用telnet ip port 来验证mongodb服务器监听的端口是否可以链接。</p>
-</li>
-</ol></div>
+<pre><code>sudo docker  run -d  --name mongodb mongo:4.2.5-bionic
+</code></pre>
+
+<p>docker 镜像请参考<a href="https://hub.docker.com/_/mongo">mongodb 官方镜像文档</a>。</p>
+<h2 id="mongodb_2">如何验证mongodb启动成功</h2>
+<pre><code>使用客户端访问并可以连接，或者使用telnet ip port 来验证mongodb服务器监听的端口是否可以链接。
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

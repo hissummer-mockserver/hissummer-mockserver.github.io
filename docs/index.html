@@ -53,6 +53,9 @@
                                 <a href="quickstart/">快速开始</a>
                             </li>
                             <li >
+                                <a href="documents/catalog/">文档</a>
+                            </li>
+                            <li >
                                 <a href="https://github.com/hissummer-mockserver/mockServer/issues">后端问题提交</a>
                             </li>
                             <li >
@@ -84,9 +87,14 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#_1">介绍</a></li>
+        <li class="main active"><a href="#hissummer-mockserver">Hissummer Mockserver</a></li>
+        <li class="main "><a href="#_1">介绍</a></li>
         <li class="main "><a href="#_2">支持的功能</a></li>
         <li class="main "><a href="#_3">部署</a></li>
+            <li><a href="#docker-compose">docker-compose 部署</a></li>
+            <li><a href="#docker">docker部署</a></li>
+            <li><a href="#docker-mongodb">docker + mongodb 部署</a></li>
+            <li><a href="#war">war包部署</a></li>
         <li class="main "><a href="#_4">快速开始</a></li>
         <li class="main "><a href="#_5">文档</a></li>
         <li class="main "><a href="#_6">赞助</a></li>
@@ -94,43 +102,51 @@
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h2 id="_1">介绍</h2>
+<h1 id="hissummer-mockserver"><strong>Hissummer Mockserver</strong></h1>
+<hr />
+<h1 id="_1">介绍</h1>
 <p>mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。
-hissummer mockserver 不仅仅是一个restful api的mock server且支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。</p>
-<h2 id="_2">支持的功能</h2>
+hissummer mockserver 还支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。</p>
+<h1 id="_2">支持的功能</h1>
 <ul>
-<li>http协议（若想支持https 建议前面通过反向代理支持，因为mockserver可以自定义domainname，但是通过tomcat支持多个domainname的ssl证书应该无法解决）</li>
+<li>http协议mock 指定path的响应报文，响应头</li>
 <li>mock 规则的管理</li>
 <li>支持eureka 服务的注册，心跳，取消注册功能</li>
 </ul>
-<h2 id="_3">部署</h2>
-<p>推荐使用docker-compose进行部署。如果使用docker和源码或者war包部署，请先部署mongodb服务，<a href="deploy/deploymongodb/">如何部署mongodb？</a>。</p>
-<ul>
-<li>
-<p><a href="deploy/compile/">war包部署</a></p>
-<p>！注意：此方式部署，需要先<a href="deploy/deploymongodb/">部署mongodb</a>。</p>
-</li>
-<li>
-<p>docker部署</p>
-<p>！注意：此方式部署，需要先<a href="deploy/deploymongodb/">部署mongodb</a>。</p>
-<p><code>$sudo docker run -d -e mongodbHost=${mongodbHost} -e mongodbPort=${mongodbPort} -p 8080:8080   nighteblis/hissummer-mockserver</code></p>
-<p>mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号</p>
-</li>
-<li>
-<p>docker-compose 部署</p>
-<p><code>$git clone git@github.com:hissummer-mockserver/buildStandaloneWar.git
-$cd compose
-$sudo docker-compose up -d</code></p>
-</li>
-</ul>
-<h2 id="_4">快速开始</h2>
+<hr />
+<h1 id="_3">部署</h1>
+<p>为了更快速的开始，推荐使用docker-compose或者docker进行部署。</p>
+<h2 id="docker-compose">docker-compose 部署</h2>
+<pre><code>$ git clone git@github.com:hissummer-mockserver/buildStandaloneWar.git
+$ cd compose
+$ sudo docker-compose up -d
+</code></pre>
+
+<h2 id="docker">docker部署</h2>
+<pre><code>$ sudo docker run -d --name hissummer-mongodb -p 27018:27017 mongo:4.2.5-bionic
+$ sudo docker run -d --name hissummer-mockserver -e mongodbHost=localhost -e mongodbPort=27018 -p 8080:8080   nighteblis/hissummer-mockserver
+</code></pre>
+
+<p><em>注意：mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号。启动mongodb 容器，也可以不做端口映射，在启动hissummer-mockserver时则指定的mongodbHost为mongodb容器的hostame或者docker分配的ip地址。关于docker的使用方法，请阅读docker官方文档！</em></p>
+<h2 id="docker-mongodb">docker + mongodb 部署</h2>
+<p>请先部署mongodb服务，<a href="deploy/deploymongodb/">如何部署mongodb？</a>。</p>
+<pre><code>$ sudo docker run -d --name hissummer-mockserver -e mongodbHost=mongodbHost -e mongodbPort=27017 -p 8080:8080   nighteblis/hissummer-mockserver
+</code></pre>
+
+<h2 id="war">war包部署</h2>
+<ol>
+<li><a href="deploy/deploymongodb/">部署mongodb</a></li>
+<li><a href="deploy/compile/">war包构建和部署</a></li>
+</ol>
+<hr />
+<h1 id="_4">快速开始</h1>
 <p><a href="quickstart/">快速开始</a></p>
-<h2 id="_5">文档</h2>
+<hr />
+<h1 id="_5">文档</h1>
 <p><a href="documents/catalog/">文档</a></p>
-<h2 id="_6">赞助</h2>
-<ul>
-<li>paypal account: <a href="https://www.paypal.me/nighteblis">https://www.paypal.me/nighteblis</a></li>
-</ul></div>
+<hr />
+<h1 id="_6">赞助</h1>
+<p>paypal account: <a href="https://www.paypal.me/nighteblis">https://www.paypal.me/nighteblis</a></p></div>
         </div>
 
         <footer class="col-md-12">
@@ -213,5 +229,5 @@ $sudo docker-compose up -d</code></p>
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-05-19 15:27:51
+Build Date UTC : 2020-07-16 16:32:36
 -->
