@@ -31,11 +31,10 @@ $ sudo docker-compose up -d
 ## docker部署
 
 ```
-$ sudo docker run -d --name hissummer-mongodb -p 27018:27017 mongo:4.2.5-bionic
-$ sudo docker run -d --name hissummer-mockserver -e mongodbHost=localhost -e mongodbPort=27018 -p 8080:8080   nighteblis/hissummer-mockserver
+$ sudo docker network create hissummer
+$ sudo docker run -d --name hissummer-mongodb --network hissummer  mongo:4.2.5-bionic
+$ sudo docker run -d --name hissummer-mockserver --network hissummer -e mongodbHost=hissummer-mongodb -e mongodbPort=27017 -p 8080:8080   nighteblis/hissummer-mockserver
 ```
-
-*注意：mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号。启动mongodb 容器，也可以不做端口映射，在启动hissummer-mockserver时则指定的mongodbHost为mongodb容器的hostame或者docker分配的ip地址。关于docker的使用方法，请阅读docker官方文档！*
 
 ## docker + mongodb 部署
 
