@@ -6,7 +6,7 @@
 ***
 mockserver是模拟http返回报文的一个mock 服务。 可以用于微服务架构下和前端（h5，native app）模拟后端服务报文的开发联调和测试。
 hissummer mockserver 还支持mockserver注册到eureka发现中心，可以方便的进行eureka服务实例的mock测试。
-![homepage](../img/homepage.png)
+![homepage](img/homepage.png)
 
 #  支持的功能
 ***
