@@ -3,7 +3,7 @@
 
     [部署](../#_3)成功后访问http://localhost:8080
     ![homepage](../img/homepage.png)
-    如果打开如上图页面，则证明部署成功。
+    如果打开如上图页面，则证明部署成功。v0.0.4版本增加了登陆功能，默认用户名/密码为admin/hissummer.com。
 
 1. 添加http规则
 

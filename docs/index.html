@@ -126,11 +126,11 @@ $ sudo docker-compose up -d
 </code></pre>
 
 <h2 id="docker">docker部署</h2>
-<pre><code>$ sudo docker run -d --name hissummer-mongodb -p 27018:27017 mongo:4.2.5-bionic
-$ sudo docker run -d --name hissummer-mockserver -e mongodbHost=localhost -e mongodbPort=27018 -p 8080:8080   nighteblis/hissummer-mockserver
+<pre><code>$ sudo docker network create hissummer
+$ sudo docker run -d --name hissummer-mongodb --network hissummer  mongo:4.2.5-bionic
+$ sudo docker run -d --name hissummer-mockserver --network hissummer -e mongodbHost=hissummer-mongodb -e mongodbPort=27017 -p 8080:8080   nighteblis/hissummer-mockserver
 </code></pre>
 
-<p><em>注意：mongodbHost 是mongodb服务的地址, mongodbPort 是mongodb服务的端口号。启动mongodb 容器，也可以不做端口映射，在启动hissummer-mockserver时则指定的mongodbHost为mongodb容器的hostame或者docker分配的ip地址。关于docker的使用方法，请阅读docker官方文档！</em></p>
 <h2 id="docker-mongodb">docker + mongodb 部署</h2>
 <p>请先部署mongodb服务，<a href="deploy/deploymongodb/">如何部署mongodb？</a>。</p>
 <pre><code>$ sudo docker run -d --name hissummer-mockserver -e mongodbHost=mongodbHost -e mongodbPort=27017 -p 8080:8080   nighteblis/hissummer-mockserver
@@ -233,5 +233,5 @@ $ sudo docker run -d --name hissummer-mockserver -e mongodbHost=localhost -e mon
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-08-14 14:44:00
+Build Date UTC : 2020-11-03 15:24:03
 -->
