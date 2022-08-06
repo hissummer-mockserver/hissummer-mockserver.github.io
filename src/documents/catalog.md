@@ -16,7 +16,7 @@
 
     3. 第三步，如果是groovy脚本，则执行groovy脚本。 并将groovy脚本中的response变量的值作为要返回的response值。
 
-## 二 Http Mock规则dd
+## 二 Http Mock规则
 Http Mock Rule，定义一个http接口的mock报文。
 ### 规则属性
 * id
