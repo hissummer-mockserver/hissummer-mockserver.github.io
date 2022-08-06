@@ -95,9 +95,10 @@
             <li><a href="#docker">docker部署</a></li>
             <li><a href="#docker-mongodb">docker + mongodb 部署</a></li>
             <li><a href="#war">war包部署</a></li>
-        <li class="main "><a href="#_4">快速开始</a></li>
-        <li class="main "><a href="#_5">文档</a></li>
-        <li class="main "><a href="#_6">赞助</a></li>
+        <li class="main "><a href="#_4">部署后初始用户名密码</a></li>
+        <li class="main "><a href="#_5">快速开始</a></li>
+        <li class="main "><a href="#_6">文档</a></li>
+        <li class="main "><a href="#_7">赞助</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -112,7 +113,7 @@ hissummer mockserver 还支持mockserver注册到eureka发现中心，可以方�
 <h1 id="_2">支持的功能</h1>
 <hr />
 <ul>
-<li>http协议mock 指定path的响应报文，响应头</li>
+<li>mock http协议响应报文，响应头</li>
 <li>mock 规则的管理</li>
 <li>支持eureka 服务的注册，心跳，取消注册功能</li>
 </ul>
@@ -126,6 +127,7 @@ $ sudo docker-compose up -d
 </code></pre>
 
 <h2 id="docker">docker部署</h2>
+<p>首先启动mongodb docker服务，然后启动hissummer-mockserver</p>
 <pre><code>$ sudo docker network create hissummer
 $ sudo docker run -d --name hissummer-mongodb --network hissummer  mongo:4.2.5-bionic
 $ sudo docker run -d --name hissummer-mockserver --network hissummer -e mongodbHost=hissummer-mongodb -e mongodbPort=27017 -p 8080:8080   nighteblis/hissummer-mockserver
@@ -141,14 +143,17 @@ $ sudo docker run -d --name hissummer-mockserver --network hissummer -e mongodbH
 <li><a href="deploy/deploymongodb/">部署mongodb</a></li>
 <li><a href="deploy/compile/">war包构建和部署</a></li>
 </ol>
+<h1 id="_4">部署后初始用户名密码</h1>
+<p>用户名:admin
+密码:hissummer.com</p>
 <hr />
-<h1 id="_4">快速开始</h1>
+<h1 id="_5">快速开始</h1>
 <hr />
 <p><a href="quickstart/">快速开始</a></p>
-<h1 id="_5">文档</h1>
+<h1 id="_6">文档</h1>
 <hr />
 <p><a href="documents/catalog/">文档</a></p>
-<h1 id="_6">赞助</h1>
+<h1 id="_7">赞助</h1>
 <hr />
 <p>paypal account: <a href="https://www.paypal.me/nighteblis">https://www.paypal.me/nighteblis</a></p></div>
         </div>
@@ -233,5 +238,5 @@ $ sudo docker run -d --name hissummer-mockserver --network hissummer -e mongodbH
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-11-03 15:24:03
+Build Date UTC : 2022-08-06 17:18:33
 -->

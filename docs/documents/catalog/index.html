@@ -88,7 +88,7 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#_1">一 工作原理</a></li>
-        <li class="main "><a href="#http-mock">二 Http Mock规则</a></li>
+        <li class="main "><a href="#http-mockdd">二 Http Mock规则dd</a></li>
             <li><a href="#_2">规则属性</a></li>
             <li><a href="#_3">操作</a></li>
             <li><a href="#_4">匹配规则</a></li>
@@ -102,7 +102,15 @@
 <h2 id="_1">一 工作原理</h2>
 <ol>
 <li>
-<p>请求路径的匹配(request path match)</p>
+<p>根据http请求路径进行匹配,如果没有找到则返回未找到mock规则。
+例子： 如果访问 http://localhost:8080/a/b</p>
+<ol>
+<li>第一步查找 localhost的主机名的 /a/b 规则是否存在，如果找到则返回该mock规则定义的mock报文和响应Header。</li>
+<li>如果第一步未找到则查找 localhost的主机名的 /a 规则是否存在，如果找到则返回该mock规则定义的mock报文和响应Header。 </li>
+<li>如果第二步未找到规则，则查找 *主机名的/a/b 规则是否存在，如果找到则返回该mock规则定义的mock报文和响应Header。</li>
+<li>如果第三步未找到规则，则*的主机名的 /a 规则是否存在，如果找到则返回该mock规则定义的mock报文和响应Header。</li>
+<li>如果以上步骤均未找到，则返回未找到mock规则。</li>
+</ol>
 </li>
 <li>
 <p>返回mock报文的处理</p>
@@ -116,11 +124,10 @@
 <li>
 <p>第三步，如果是groovy脚本，则执行groovy脚本。 并将groovy脚本中的response变量的值作为要返回的response值。</p>
 </li>
-<li>第四步，将response所有的换行符删除。</li>
 </ol>
 </li>
 </ol>
-<h2 id="http-mock">二 Http Mock规则</h2>
+<h2 id="http-mockdd">二 Http Mock规则dd</h2>
 <p>Http Mock Rule，定义一个http接口的mock报文。</p>
 <h3 id="_2">规则属性</h3>
 <ul>

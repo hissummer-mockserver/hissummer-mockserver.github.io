@@ -10,10 +10,9 @@ hissummer mockserver 还支持mockserver注册到eureka发现中心，可以方�
 
 #  支持的功能
 ***
-* http协议mock 指定path的响应报文，响应头
+* mock http协议响应报文，响应头
 * mock 规则的管理
 * 支持eureka 服务的注册，心跳，取消注册功能
-
 
 
 # 部署
@@ -29,6 +28,8 @@ $ sudo docker-compose up -d
 ```
 
 ## docker部署
+
+首先启动mongodb docker服务，然后启动hissummer-mockserver
 
 ```
 $ sudo docker network create hissummer
@@ -48,6 +49,11 @@ $ sudo docker run -d --name hissummer-mockserver -e mongodbHost=mongodbHost -e m
 
 1. [部署mongodb](deploy/deploymongodb/)
 2. [war包构建和部署](deploy/compile/)
+
+
+# 部署后初始用户名密码
+用户名:admin
+密码:hissummer.com
 
 ***
 

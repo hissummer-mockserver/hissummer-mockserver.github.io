@@ -1,6 +1,12 @@
 ## 一 工作原理
 
-1.  请求路径的匹配(request path match)
+1.  根据http请求路径进行匹配,如果没有找到则返回未找到mock规则。
+例子： 如果访问 http://localhost:8080/a/b
+    1. 第一步查找 localhost的主机名的 /a/b 规则是否存在，如果找到则返回该mock规则定义的mock报文和响应Header。
+    2. 如果第一步未找到则查找 localhost的主机名的 /a 规则是否存在，如果找到则返回该mock规则定义的mock报文和响应Header。 
+    3. 如果第二步未找到规则，则查找 *主机名的/a/b 规则是否存在，如果找到则返回该mock规则定义的mock报文和响应Header。
+    4. 如果第三步未找到规则，则*的主机名的 /a 规则是否存在，如果找到则返回该mock规则定义的mock报文和响应Header。
+    5. 如果以上步骤均未找到，则返回未找到mock规则。
 
 2. 返回mock报文的处理
     1.  第一步首先处理${\_\_内建函数}变量替换。例如${\_\_NowDate()} 替换成 1539313200000
@@ -9,9 +15,8 @@
             例如： 请求的header content-type: application/json,  body 为  {'a':'value'} , 那么 mock response的报文中 ${requestBody.a}  将会替换成  value值
 
     3. 第三步，如果是groovy脚本，则执行groovy脚本。 并将groovy脚本中的response变量的值作为要返回的response值。
-    4. 第四步，将response所有的换行符删除。
 
-## 二 Http Mock规则
+## 二 Http Mock规则dd
 Http Mock Rule，定义一个http接口的mock报文。
 ### 规则属性
 * id
